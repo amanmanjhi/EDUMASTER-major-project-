@@ -15,7 +15,7 @@ def notes(request):
         if form.is_valid():
             notes=Notes(user=request.user, title=request.POST['title'],description=request.POST['description'])
             notes.save()
-        messages.success(request,f"notes added from{request.user.username} Successfully!")
+        messages.success(request,f"notes added from {request.user.username} Successfully!")
     else:
         form = NotesForm()
     notes= Notes.objects.filter(user=request.user)
