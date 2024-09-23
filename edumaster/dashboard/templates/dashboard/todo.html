@@ -14,13 +14,20 @@
             </tr>
         </thead>
         <tbody>
+        {% for todo  in todos  %}
+        
+        
             <tr>
-                <th scope="row">1</th>
-                <td>title</td>
+                <th scope="row">1</th>{{forloop.counter}}
+                <td>{{todo.title}}</td>
                 <td>
                     <a href="#">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" checked id=1>
+                            {% if todo.is_finished==True %}
+                            <input class="form-check-input" type="checkbox" value="" checked >
+                            {% else %}
+                             <input class="form-check-input" type="checkbox" value="" >
+                            {% endif %}
                             <label class="form-check-label text-light" for="flexCheckDefault">
                                 Mark as Completed
                             </label>
@@ -31,6 +38,7 @@
                 <td><a href="#"><i class="fa fa-trash fa-2x"></i></a></td>
             </tr>
         </tbody>
+        {% endfor %}
     </table>
     <h4>All tasks have been done!! create to add more</h4>
 </div><br><br>
