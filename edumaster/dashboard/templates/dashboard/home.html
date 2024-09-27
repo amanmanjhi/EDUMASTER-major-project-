@@ -8,7 +8,7 @@
   <hr> <br>
   <div class="row">
     <div class="col-md-3">
-      <a href="#">
+      <a href="{% url 'notes' %}">
         <div class="card">
           <img class="card-img-top" src="{% static 'images/notes.jpg' %}" alt="Notes image">
           <div class="card-body">
@@ -22,7 +22,7 @@
     </div>
 
     <div class="col-md-3">
-      <a href="#">
+      <a href="{% url 'homework' %}">
         <div class="card">
           <img class="card-img-top" src="{% static 'images/homework.jpg' %}" alt="Notes image">
           <div class="card-body">
@@ -35,7 +35,7 @@
       </a>
     </div>
     <div class="col-md-3">
-      <a href="#">
+      <a href="{% url 'youtube' %}">
         <div class="card">
           <img class="card-img-top" src="{% static 'images/youtube.jpg' %}" alt="Notes image">
           <div class="card-body">
@@ -48,7 +48,7 @@
       </a>
     </div>
     <div class="col-md-3">
-      <a href="#">
+      <a href="{% url 'todo' %}">
         <div class="card">
           <img class="card-img-top" src="{% static 'images/todo.jpg' %}" alt="Notes image">
           <div class="card-body">
@@ -64,7 +64,7 @@
   <br><br><br>
   <div class="row">
     <div class="col-md-3 ">
-      <a href="#">
+      <a href="{% url 'books' %}">
         <div class="card mt-20">
           <img class="card-img-top" src="{% static 'images/books.jpg' %}" alt="Notes image">
           <div class="card-body">
@@ -80,7 +80,7 @@
 
 
     <div class="col-md-3">
-      <a href="#">
+      <a href="{% url 'dictionary' %}">
         <div class="card">
           <img class="card-img-top" src="{% static 'images/dictionary.jpg' %}" alt="Notes image">
           <div class="card-body">
@@ -94,7 +94,7 @@
       </a>
     </div>
     <div class="col-md-3">
-      <a href="#">
+      <a href="{% url 'wiki' %}">
         <div class="card">
           <img class="card-img-top" src="{% static 'images/wiki.jpg' %}" alt="Notes image">
           <div class="card-body">
@@ -108,7 +108,7 @@
     </div>
 
 
-    <div class="col-md-3">
+    {% comment %} <div class="col-md-3">
       <a href="#">
         <div class="card">
           <img class="card-img-top" src="{% static 'images/conversion.jpg' %}" alt="Notes image">
@@ -120,7 +120,7 @@
           </div>
         </div>
       </a>
-    </div>
+    </div> {% endcomment %}
   </div>
 
 
