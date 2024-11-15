@@ -1,7 +1,7 @@
 {% extends 'dashboard/base.html' %} 
 {% load static %} 
 {% block content %}
-<form id="logout-form" action="{% url 'logout' %}" method="POST">
+<form id="logout-form" action="{% url 'logout' %}" method="post">
     {% csrf_token %}
     <button type="submit">Logout</button>
 </form>

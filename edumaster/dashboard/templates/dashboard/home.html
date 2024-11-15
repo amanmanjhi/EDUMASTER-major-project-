@@ -1,6 +1,16 @@
 {% extends 'dashboard/base.html' %} 
 {% load static %} 
 {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+</head>
+<body>
+
 
 <section class="container text-center">
   <h3>Welcome</h3>
@@ -12,7 +22,7 @@
         <div class="card">
           <img class="card-img-top" src="{% static 'images/notes.jpg' %}" alt="Notes image">
           <div class="card-body">
-            <h5 class="card-title ">
+            <h5 class="card-title">
               Notes
             </h5>
             Create Notes to refer them later. They are stored permanently until deleted
@@ -108,21 +118,70 @@
     </div>
 
 
-    {% comment %} <div class="col-md-3">
-      <a href="#">
+     <div class="col-md-3">
+      <a href="{% url 'quiz_view' %}">
         <div class="card">
-          <img class="card-img-top" src="{% static 'images/conversion.jpg' %}" alt="Notes image">
+          <img class="card-img-top" src="{% static 'images/ai study planner.jpg' %}" alt="Notes image">
           <div class="card-body">
             <h5 class="card-title ">
-              Conversion
+              AI Study Planner
             </h5>
-            Check out the conversion table, that helps you to convert measurements to more familiar ones of your choice.
+            Effortlessly plan, track, and optimize your study sessions with our AI-powered study planner tailored to your learning goals.
           </div>
         </div>
       </a>
-    </div> {% endcomment %}
+    </div> 
+    
+  {% comment %} chat-bot {% endcomment %}
+
+  <div id="chatbot-icon" onclick="toggleChatbot()">
+        💬 <!-- You can replace this with an icon image if you prefer -->
+    </div>
+    
+    <!-- Chatbot Window -->
+    <div id="chatbot-window">
+        <div id="chat-header">
+            <h3>Chat with Us</h3>
+            <button onclick="toggleChatbot()">✖</button>
+        </div>
+        <div id="chatbox">
+            <div id="messages"></div>
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
   </div>
 
 
+
 </section>
+<script>
+        async function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            document.getElementById("messages").innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+
+            const response = await fetch('/chatbot/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ message: userInput })
+            });
+            
+            const data = await response.json();
+            document.getElementById("messages").innerHTML += `<p><strong>Bot:</strong> ${data.message}</p>`;
+            document.getElementById("user-input").value = "";
+        }
+
+        
+    // Function to toggle chatbot window visibility
+    function toggleChatbot() {
+        const chatbotWindow = document.getElementById("chatbot-window");
+        chatbotWindow.style.display = chatbotWindow.style.display === "none" || chatbotWindow.style.display === "" ? "block" : "none";
+    }
+  </script>
+ 
 {% endblock content %}
+ </body>
+</html>

@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
+import environ
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,6 +30,17 @@ SECRET_KEY = 'django-insecure-&x3(w$68qa8xkwz=18g6_0+6o(@tvc0i5hih+(k5yk7sk&l0+-
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+# Initialize environment variables
+# env = environ.Env()
+# environ.Env.read_env(r"C:\Users\HP\Desktop\EDUMASTER\edumaster\.env")
+# print("OpenAI API Key:", env("OPENAI_API_KEY", default="Not Found"))
+
+
+# Use the API key in your settings
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# print("OpenAI API Key:", env("OPENAI_API_KEY"))
+
 
 
 # Application definition

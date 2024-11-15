@@ -1,0 +1,15 @@
+<!-- quiz.html --> 
+{% extends 'dashboard/base.html' %} 
+{% load static %} 
+{% block content %}
+{% load crispy_forms_tags %}
+<section class="text-center container justify-content-center flex-direction-row">
+    <h1>Prior Knowledge Quiz</h1>
+    <p>{{ quiz }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="answers" placeholder="Enter your answers here"></textarea><b></b>
+        <button class="btn btn-danger align-items-center" type="submit">Submit Quiz</button>
+    </form> 
+</section>
+{% endblock content %}

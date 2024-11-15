@@ -34,5 +34,9 @@ class UserRegistrationForm(UserCreationForm):
         model = User
         fields= ['username', 'password1', 'password2']
         
-
+class LearningObjectiveForm(forms.Form):
+    course_name = forms.CharField(label='Course Name', max_length=100)
+    objectives = forms.CharField(widget=forms.Textarea, label='What do you want to learn?')
+    available_time = forms.IntegerField(label='Available hours per day')
+    learning_days = forms.IntegerField(label='In how many days do you want to complete the course?')
     

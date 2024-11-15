@@ -1,0 +1,74 @@
+/* CSS for the chatbot icon */
+#chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #18191a;
+    color: white;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* CSS for the chatbot window */
+#chatbot-window {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+/* Chat header styling */
+#chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #18191a;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Styling the chat area */
+#chatbox {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 40px);
+}
+
+/* Chat messages styling */
+#messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    max-height: 250px;
+}
+
+#user-input {
+    width: calc(100% - 60px);
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+#chatbox button {
+    padding: 8px;
+    background-color: #18191a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
