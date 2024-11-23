@@ -32,13 +32,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Initialize environment variables
-# env = environ.Env()
-# environ.Env.read_env(r"C:\Users\HP\Desktop\EDUMASTER\edumaster\.env")
-# print("OpenAI API Key:", env("OPENAI_API_KEY", default="Not Found"))
+env = environ.Env()
+environ.Env.read_env(r"C:\Users\HP\Desktop\EDUMASTER\edumaster\.env")
+print("CO_API_KEY:", env("CO_API_KEY", default="Not Found"))
 
 
 # Use the API key in your settings
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+COHERE_API_KEY = os.getenv("CO_API_KEY")
 # print("OpenAI API Key:", env("OPENAI_API_KEY"))
 
 

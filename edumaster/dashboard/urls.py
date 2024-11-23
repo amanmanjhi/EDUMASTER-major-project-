@@ -16,8 +16,9 @@ urlpatterns=[
     path('dictionary',views.dictionary,name="dictionary"),
     path('books',views.books,name="books"),
     path('wiki',views.wiki,name="wiki"),
-    path('learning_plan/', views.learning_plan, name='learning_plan'),
-    path('quiz_view/', views.quiz_view, name='quiz_view'),
-    path('feedback_view/', views.feedback_view, name='feedback_view'),
+    # path('learning_plan/', views.learning_plan, name='learning_plan'),
+    # path('quiz_view/', views.quiz_view, name='quiz_view'),
+    # path('feedback_view/', views.feedback_view, name='feedback_view'),
     path('chatbot/', views.chatbot_response, name='chatbot_response'),
+    path('generate_study_plan/', views.generate_study_plan, name='generate_study_plan'),
 ]  

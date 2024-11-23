@@ -1,0 +1,32 @@
+{% extends 'dashboard/base.html' %} 
+{% load static %} 
+{% block content%}
+{% comment %} <!DOCTYPE html> {% endcomment %}
+{% comment %} <html lang="en">
+<head>
+    <title>Study Planner</title>
+</head>
+<body> {% endcomment %}
+    <h1>📚 Personalized Study Planner</h1>
+    <form method="POST" id="study-plan-form">
+        {% csrf_token %}
+        <div id="courses-container">
+            <input type="text" name="courses[]" placeholder="Course Name">
+            <input type="date" name="deadlines[]">
+        </div>
+        <button type="button" onclick="addCourse()">Add Course</button>
+        <textarea name="preferences" placeholder="Enter your preferences"></textarea>
+        <button type="submit">Generate Study Plan</button>
+    </form>
+    <div id="study-plan-output"></div>
+    <script>
+        function addCourse() {
+            const container = document.getElementById('courses-container');
+            container.innerHTML += `<div><input type="text" name="courses[]" placeholder="Course Name">
+                                     <input type="date" name="deadlines[]"></div>`;
+        }
+    </script>
+{% comment %} </body>
+</html> {% endcomment %}
+{% endblock content%}
+
