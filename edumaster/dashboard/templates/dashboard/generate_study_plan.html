@@ -1,23 +1,32 @@
 {% extends 'dashboard/base.html' %} 
 {% load static %} 
-{% block content%}
+
 {% comment %} <!DOCTYPE html> {% endcomment %}
-{% comment %} <html lang="en">
+<html lang="en">
 <head>
-    <title>Study Planner</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 </head>
-<body> {% endcomment %}
-    <h1>📚 Personalized Study Planner</h1>
-    <form method="POST" id="study-plan-form">
-        {% csrf_token %}
-        <div id="courses-container">
-            <input type="text" name="courses[]" placeholder="Course Name">
-            <input type="date" name="deadlines[]">
-        </div>
-        <button type="button" onclick="addCourse()">Add Course</button>
-        <textarea name="preferences" placeholder="Enter your preferences"></textarea>
-        <button type="submit">Generate Study Plan</button>
-    </form>
+
+<body> 
+{% block content%}
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1>📚 Personalized Study Planner</h1>
+
+        <form method="POST" id="study-plan-form">
+            {% csrf_token %}
+            <div id="courses-container" class="d-inlign flex-column justify-content-center align-items-center">
+                <input type="text" name="courses[]" placeholder="Course Name" class="">
+                <input type="date" name="deadlines[]">
+            </div>
+            <div class="d-flex flex-column">
+            
+                <button class="my-2 btn-secondary" type="button" onclick="addCourse()">Add Course</button>
+                <textarea class="my-2" name="preferences" placeholder="Enter your preferences"></textarea>
+                <button class="my-2 btn-danger" type="submit">Generate Study Plan</button>
+            </div>
+        </form>
+    </div>
     <div id="study-plan-output"></div>
     <script>
         function addCourse() {
@@ -26,7 +35,7 @@
                                      <input type="date" name="deadlines[]"></div>`;
         }
     </script>
-{% comment %} </body>
-</html> {% endcomment %}
-{% endblock content%}
+    {% endblock content%}
+</body>
+
 

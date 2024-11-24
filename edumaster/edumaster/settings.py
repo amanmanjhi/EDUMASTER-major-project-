@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
-from dotenv import load_dotenv
-import environ
+# from dotenv import load_dotenv
+# import environ
 
 from pathlib import Path
 
@@ -31,15 +31,33 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
+import environ
+
 # Initialize environment variables
 env = environ.Env()
+
+# Read .env file
 environ.Env.read_env(r"C:\Users\HP\Desktop\EDUMASTER\edumaster\.env")
+
+# Fetch API Key
 print("CO_API_KEY:", env("CO_API_KEY", default="Not Found"))
+
+# Use the API key in your settings
+COHERE_API_KEY = env("CO_API_KEY", default="Not Found")
+
+
+
+# Initialize environment variables
+# env = environ.Env()
+
+# print("CO_API_KEY:", env("CO_API_KEY", default="Not Found"))
 
 
 # Use the API key in your settings
-COHERE_API_KEY = os.getenv("CO_API_KEY")
-# print("OpenAI API Key:", env("OPENAI_API_KEY"))
+# environ.Env.read_env(r"C:\Users\HP\Desktop\EDUMASTER\edumaster\.env")
+# COHERE_API_KEY = os.getenv("CO_API_KEY")
+
 
 
 
