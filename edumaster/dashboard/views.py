@@ -414,7 +414,7 @@ def chatbot_response(request):
 
 # Initialize Cohere client
 cohere_api_key = os.getenv("CO_API_KEY")
-cohere_client = Client("CO_API_KEY")
+cohere_client = Client(cohere_api_key)
 
 def generate_study_plan(request):
     if request.method == "POST":
@@ -422,6 +422,7 @@ def generate_study_plan(request):
         course_load = data.getlist('courses[]')
         deadlines = data.getlist('deadlines[]')
         preferences = data.get('preferences', '')
+        print(f'the api key I get is {os.getenv("CO_API_KEY")}')
 
         # Prepare Cohere prompt
         prompt = f"Generate a detailed study plan for the following courses: {', '.join(course_load)}. " \
@@ -429,9 +430,9 @@ def generate_study_plan(request):
 
         try:
             response = cohere_client.generate(
-                model='command-xlarge-nightly',
+                model='command-r-plus',
                 prompt=prompt,
-                max_tokens=300,
+                max_tokens=100,
                 temperature=0.7
             )
             study_plan = response.generations[0].text

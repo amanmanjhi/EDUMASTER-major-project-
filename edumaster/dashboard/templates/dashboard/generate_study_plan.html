@@ -13,7 +13,7 @@
     <div class="d-flex flex-column justify-content-center align-items-center">
         <h1>📚 Personalized Study Planner</h1>
 
-        <form method="POST" id="study-plan-form">
+        <form method="POST" id="study-plan-form" action="{%  url 'generate_study_plan' %}">
             {% csrf_token %}
             <div id="courses-container" class="d-inlign flex-column justify-content-center align-items-center">
                 <input type="text" name="courses[]" placeholder="Course Name" class="">
@@ -29,11 +29,34 @@
     </div>
     <div id="study-plan-output"></div>
     <script>
-        function addCourse() {
-            const container = document.getElementById('courses-container');
-            container.innerHTML += `<div><input type="text" name="courses[]" placeholder="Course Name">
-                                     <input type="date" name="deadlines[]"></div>`;
-        }
+       function addCourse() {
+    const container = document.getElementById('courses-container');
+    container.innerHTML += `<div>
+        <input type="text" name="courses[]" placeholder="Course Name">
+        <input type="date" name="deadlines[]">
+    </div>`;
+}
+
+document.getElementById('study-plan-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    fetch(this.action, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken,
+        },
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        const outputContainer = document.getElementById('study-plan-output');
+        outputContainer.innerHTML = `<pre>${data.study_plan}</pre>`;
+    })
+    .catch(error => console.error('Error:', error));
+});
+
     </script>
     {% endblock content%}
 </body>

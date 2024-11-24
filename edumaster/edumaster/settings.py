@@ -38,7 +38,7 @@ import environ
 env = environ.Env()
 
 # Read .env file
-environ.Env.read_env(r"C:\Users\HP\Desktop\EDUMASTER\edumaster\.env")
+environ.Env.read_env(os.path.join(BASE_DIR,".env"))
 
 # Fetch API Key
 print("CO_API_KEY:", env("CO_API_KEY", default="Not Found"))
