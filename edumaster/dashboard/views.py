@@ -328,70 +328,6 @@ def logout(request):
     return render(request, 'dashboard/logout.html')
 
 
-# openai.api_key = settings.OPENAI_API_KEY
-
-# def generate_quiz(course_name, objectives):
-#     prompt = f"Create a short 5-question quiz to assess prior knowledge for a student learning about {course_name}. " \
-#              f"The student wants to learn: {objectives}."
-#     response = openai.ChatCompletion.create(
-#         model="gpt-3.5-turbo",
-#         messages=[{"role": "system", "content": prompt}],
-#         max_tokens=200
-#     )
-#     quiz = response.choices[0].message['content']
-#     return quiz
-
-# def learning_plan(request):
-#     if request.method == 'POST':
-#         form = LearningObjectiveForm(request.POST)
-#         if form.is_valid():
-#             course_name = form.cleaned_data['course_name']
-#             objectives = form.cleaned_data['objectives']
-#             available_time = form.cleaned_data['available_time']
-#             learning_days = form.cleaned_data['learning_days']
-            
-#             # Generate Quiz
-#             quiz = generate_quiz(course_name, objectives)
-#             request.session['course_name'] = course_name
-#             request.session['objectives'] = objectives
-#             request.session['available_time'] = available_time
-#             request.session['learning_days'] = learning_days
-#             request.session['quiz'] = quiz
-#             return redirect('quiz_view')
-#     else:
-#         form = LearningObjectiveForm()
-#     return render(request, 'dashboard/learning_plan.html', {'form': form})
-
-# def quiz_view(request):
-#     quiz = request.session.get('quiz', None)
-#     if request.method == 'POST':
-#         # Process student's answers, e.g., saving them to the session
-#         answers = request.POST.getlist('answers')
-#         request.session['answers'] = answers
-#         return redirect('feedback_view')
-#     return render(request, 'dashboard/quiz.html', {'quiz': quiz})
-
-
-# views.py
-# def generate_study_plan(course_name, objectives, available_time, learning_days):
-#     prompt = f"Create a personalized study plan for a student studying {course_name}. The objectives are: {objectives}. " \
-#              f"The student has {available_time} hours per day and wants to complete the course in {learning_days} days."
-#     response = openai.ChatCompletion.create(
-#         model="gpt-3.5-turbo",
-#         messages=[{"role": "system", "content": prompt}],
-#         max_tokens=300
-#     )
-#     study_plan = response.choices[0].message['content']
-#     return study_plan
-
-# def feedback_view(request):
-#     course_name = request.session.get('course_name')
-#     objectives = request.session.get('objectives')
-#     available_time = request.session.get('available_time')
-#     learning_days = request.session.get('learning_days')
-#     study_plan = generate_study_plan(course_name, objectives, available_time, learning_days)
-    
-#     return render(request, 'study_planner/feedback.html', {'study_plan': study_plan})
 
 
 @csrf_exempt
@@ -432,7 +368,7 @@ def generate_study_plan(request):
             response = cohere_client.generate(
                 model='command-r-plus',
                 prompt=prompt,
-                max_tokens=100,
+                max_tokens=1000,
                 temperature=0.7
             )
             study_plan = response.generations[0].text
